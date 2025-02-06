@@ -27,9 +27,4 @@ export class ArticlePage {
     this.postCommentButton.click();
   }
 
-  async deleteArticle(){
-
-    this.deleteArticleLink.click();
-  
-  }
 };
