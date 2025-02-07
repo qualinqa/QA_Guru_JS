@@ -163,7 +163,6 @@ test.describe('Действия пользователя со статьей', (
          articleData.newTag);
       
       
-      //await expect(articlePage.articleTitleField).toContainText(articleData.newArticleTitle);
       await expect(page.getByRole('heading')).toContainText(articleData.newArticleTitle);
 
       });
@@ -194,7 +193,6 @@ test.describe('Действия пользователя со статьей', (
          articleData.newTag);
       
       
-      //await expect(articlePage.articleTitleField).toContainText(articleData.newArticleTitle);
       await expect(page.getByRole('heading')).toContainText(articleData.newArticleTitle);
       
       const textComment = 'Мой комментарий - лучший! Ай да я!'
