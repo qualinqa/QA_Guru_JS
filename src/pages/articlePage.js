@@ -6,7 +6,7 @@ export class ArticlePage {
 
     this.page = page;
 
-    this.articleTitleField  = page.getByRole('heading');
+    this.articleTitleField  = page.getByRole('heading', { name: 'Article Title' });
     this.editArticleLink    = page.getByRole('link', { name: 'Edit Article' }).nth(1);
     this.deleteArticleLink  = page.getByRole('button', { name: 'Delete Article' }).first();
     this.addCommentField    = page.getByPlaceholder('Write a comment');

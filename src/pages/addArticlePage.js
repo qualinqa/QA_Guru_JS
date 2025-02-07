@@ -6,7 +6,7 @@ export class AddArticlePage {
     
     this.page = page;
 
-    this.articleTitleField = page.getByRole('heading', { name: 'Article Title' });
+    this.articleTitleField = getByRole('textbox', { name: 'Article Title' });
     this.describeArticleField = page.getByPlaceholder("What's this article about?");
     this.articleField = page.getByPlaceholder('Write your article');
     this.enterTagsField = page.getByPlaceholder('Enter tags');

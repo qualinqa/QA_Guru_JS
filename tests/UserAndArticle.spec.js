@@ -91,6 +91,7 @@ await registerPage.registerNewUser(
    user.username, 
    user.email, 
    user.password);
+   
 await expect(yourFeedPage.profileNameField).toBeVisible();
 await expect(yourFeedPage.profileNameField).toContainText(user.username);
 
@@ -141,7 +142,7 @@ test.describe('Действия пользователя со статьей', (
       
       
       const articleData = {
-          newArticleTitle: faker.lorem.word(3),
+          newArticleTitle: faker.lorem.sentence(3),
           newDescribeArticle: "описание",
           newArticle: "Вот такая интересная статья получилась!",
           newTag: "просто тэг"
@@ -162,8 +163,8 @@ test.describe('Действия пользователя со статьей', (
          articleData.newTag);
       
       
-      // await expect(articlePage.articleTitleField).toContainText(articleData.newArticleTitle);
-      await expect(page.getByRole('heading')).toContainText(articleData.newArticleTitle);
+      await expect(articlePage.articleTitleField).toContainText(articleData.newArticleTitle);
+
       });
 
 
@@ -171,7 +172,7 @@ test.describe('Действия пользователя со статьей', (
       
       
       const articleData = {
-         newArticleTitle: faker.lorem.word(3),
+         newArticleTitle: faker.lorem.sentence(3),
          newDescribeArticle: "описание",
          newArticle: "Новая статья интереснее старой!",
          newTag: "тэг, просто тэг"
@@ -192,8 +193,7 @@ test.describe('Действия пользователя со статьей', (
          articleData.newTag);
       
       
-      // await expect(articlePage.articleTitleField).toContainText(articleData.newArticleTitle);
-      await expect(page.getByRole('heading')).toContainText(articleData.newArticleTitle);
+      await expect(articlePage.articleTitleField).toContainText(articleData.newArticleTitle);
       
       const textComment = 'Мой комментарий - лучший! Ай да я!'
       await articlePage.postNewComment(textComment);
