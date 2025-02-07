@@ -162,9 +162,6 @@ test.describe('Действия пользователя со статьей', (
          articleData.newTag);
       
       
-      //await expect(page.getByRole('heading')).toContainText(articleData.newArticleTitle);
-
-
       await expect(addArticlePage.checkArticleTitleField).toContainText(articleData.newArticleTitle);
 
       });
@@ -175,7 +172,6 @@ test.describe('Действия пользователя со статьей', (
       
    
       const yourFeedPage = new YourFeedPage(page);
-      //const addArticlePage = new AddArticlePage(page);
       const addArticlePage = new AddArticlePage(page, articleData.newArticleTitle);
       const articlePage = new ArticlePage(page);
       
@@ -189,8 +185,6 @@ test.describe('Действия пользователя со статьей', (
          articleData.newTag);
       
       
-      // await expect(page.getByRole('heading')).toContainText(articleData.newArticleTitle);
-
       await expect(addArticlePage.checkArticleTitleField).toContainText(articleData.newArticleTitle);
       
       const textComment = 'Мой комментарий - лучший! Ай да я!'
