@@ -91,7 +91,7 @@ await registerPage.registerNewUser(
    user.username, 
    user.email, 
    user.password);
-   
+
 await expect(yourFeedPage.profileNameField).toBeVisible();
 await expect(yourFeedPage.profileNameField).toContainText(user.username);
 
@@ -163,7 +163,8 @@ test.describe('Действия пользователя со статьей', (
          articleData.newTag);
       
       
-      await expect(articlePage.articleTitleField).toContainText(articleData.newArticleTitle);
+      //await expect(articlePage.articleTitleField).toContainText(articleData.newArticleTitle);
+      await expect(page.getByRole('heading')).toContainText(articleData.newArticleTitle);
 
       });
 
@@ -193,7 +194,8 @@ test.describe('Действия пользователя со статьей', (
          articleData.newTag);
       
       
-      await expect(articlePage.articleTitleField).toContainText(articleData.newArticleTitle);
+      //await expect(articlePage.articleTitleField).toContainText(articleData.newArticleTitle);
+      await expect(page.getByRole('heading')).toContainText(articleData.newArticleTitle);
       
       const textComment = 'Мой комментарий - лучший! Ай да я!'
       await articlePage.postNewComment(textComment);
