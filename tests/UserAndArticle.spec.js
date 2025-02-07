@@ -173,16 +173,10 @@ test.describe('Действия пользователя со статьей', (
       test('Пользователь может добавить комментарий к статье', async ({ page }) => {
       
       
-      const articleData = {
-         newArticleTitle: faker.lorem.sentence(3),
-         newDescribeArticle: "описание",
-         newArticle: "Новая статья интереснее старой!",
-         newTag: "тэг, просто тэг"
-     
-     };
-      
+   
       const yourFeedPage = new YourFeedPage(page);
-      const addArticlePage = new AddArticlePage(page);
+      //const addArticlePage = new AddArticlePage(page);
+      const addArticlePage = new AddArticlePage(page, articleData.newArticleTitle);
       const articlePage = new ArticlePage(page);
       
      
@@ -195,7 +189,9 @@ test.describe('Действия пользователя со статьей', (
          articleData.newTag);
       
       
-      await expect(page.getByRole('heading')).toContainText(articleData.newArticleTitle);
+      // await expect(page.getByRole('heading')).toContainText(articleData.newArticleTitle);
+
+      await expect(addArticlePage.checkArticleTitleField).toContainText(articleData.newArticleTitle);
       
       const textComment = 'Мой комментарий - лучший! Ай да я!'
       await articlePage.postNewComment(textComment);
