@@ -1,4 +1,4 @@
-import { fakerRU as faker } from '@faker-js/faker'
+import { faker } from '@faker-js/faker'
 import { test, expect } from '@playwright/test';
 import { MainPage } from '../src/pages/mainPage';
 import { LoginPage } from '../src/pages/loginPage';
@@ -10,6 +10,13 @@ import { SettingsPage } from '../src/pages/settingsPage';
 
 
 const URL_UI = 'https://realworld.qa.guru/';
+
+const articleData = {
+   newArticleTitle: faker.lorem.sentence(3),
+   newDescribeArticle: "описание",
+   newArticle: "Вот такая интересная статья получилась!",
+   newTag: "просто тэг"
+};
 
 
 // Пользователь
@@ -141,16 +148,8 @@ test.describe('Действия пользователя со статьей', (
    test('Пользователь может добавить новую статью', async ({ page }) => {
       
       
-      const articleData = {
-          newArticleTitle: faker.lorem.sentence(3),
-          newDescribeArticle: "описание",
-          newArticle: "Вот такая интересная статья получилась!",
-          newTag: "просто тэг"
-      
-      };
-
       const yourFeedPage = new YourFeedPage(page);
-      const addArticlePage = new AddArticlePage(page);
+      const addArticlePage = new AddArticlePage(page, articleData.newArticleTitle);
       const articlePage = new ArticlePage(page);
       
       
@@ -163,7 +162,10 @@ test.describe('Действия пользователя со статьей', (
          articleData.newTag);
       
       
-      await expect(page.getByRole('heading')).toContainText(articleData.newArticleTitle);
+      //await expect(page.getByRole('heading')).toContainText(articleData.newArticleTitle);
+
+
+      await expect(addArticlePage.checkArticleTitleField).toContainText(articleData.newArticleTitle);
 
       });
 

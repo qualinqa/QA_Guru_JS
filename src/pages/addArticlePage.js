@@ -2,15 +2,15 @@
 
 export class AddArticlePage {
 
-  constructor(page){ 
+  constructor(page, newArticleTitle){
     
     this.page = page;
-
+    this.checkArticleTitleField  = this.page.getByRole('heading');
     this.articleTitleField = page.getByRole('textbox', { name: 'Article Title' });
     this.describeArticleField = page.getByPlaceholder("What's this article about?");
     this.articleField = page.getByPlaceholder('Write your article');
     this.enterTagsField = page.getByPlaceholder('Enter tags');
-    this.publishArticleButton =  page.getByRole('button', { name: 'Publish Article' })
+    this.publishArticleButton =  page.getByRole('button', { name: 'Publish Article' });
    
   }
 
