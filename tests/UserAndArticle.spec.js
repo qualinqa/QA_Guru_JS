@@ -164,20 +164,17 @@ test.describe('Действия пользователя со статьей', (
       
       await yourFeedPage.gotoNewArticle();
       
-    // Создание и публикация статьи с помощью ArticleBuilder
-    const articleBuilder = new ArticleBuilder(page)
-        .addTitle() // Используем дефолтное значение
-        .addDescription() // Используем дефолтное значение
-        .addBody() // Используем дефолтное значение
-        .addTag(); // Используем дефолтное значение
+      await addArticlePage.publishNewArticle(
+         articleData.newArticleTitle,
+         articleData.newDescribeArticle,
+         articleData.newArticle, 
+         articleData.newTag);
 
-        await articleBuilder.publish();
+     
       
-      await expect(addArticlePage.checkArticleTitleField).toContainText(articleBuilder.articleData.title);
+      await expect(addArticlePage.checkArticleTitleField).toContainText(articleBuilder.title);
 
       });
-
-      //
 
       
 
