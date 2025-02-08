@@ -47,7 +47,7 @@ await registerPage.registerNewUser(
    userBuilder.password);
 
 await expect(yourFeedPage.profileNameField).toBeVisible();
-await expect(yourFeedPage.profileNameField).toContainText(userBuilder.name);
+await expect(yourFeedPage.profileNameField).toContainText(user.username);
 
 });
 
