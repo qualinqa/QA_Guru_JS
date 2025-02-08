@@ -1,4 +1,4 @@
-import { faker } from '@faker-js/faker'
+import { faker } from '@faker-js/faker';
 import { test, expect } from '@playwright/test';
 import { MainPage } from '../src/pages/mainPage';
 import { LoginPage } from '../src/pages/loginPage';
@@ -7,6 +7,7 @@ import { AddArticlePage} from '../src/pages/addArticlePage';
 import { ArticlePage } from '../src/pages/articlePage';
 import { RegisterPage } from '../src/pages/registerPage';
 import { SettingsPage } from '../src/pages/settingsPage';
+import { UserBuilder } from '../src/pages/user.builder';
 
 
 const URL_UI = 'https://realworld.qa.guru/';
@@ -23,12 +24,15 @@ const articleData = {
 
 test('Регистрация нового пользователя', async ({ page }) => {
 
+   const userBuilder = new UserBuilder().addEmail().addUsername().addPassword(9).generator();
+
+   /*
 const user = {
    username: faker.person.firstName(),
    email: faker.internet.email(),
    password: faker.internet.password({length: 7})
 }
-
+*/
  
 const mainPage = new MainPage(page);
 const registerPage = new RegisterPage(page);
@@ -37,12 +41,13 @@ const yourFeedPage = new YourFeedPage(page);
 await mainPage.open(URL_UI);
 await mainPage.gotoRegister();
 
-await registerPage.registerNewUser(
-   user.username, 
-   user.email, 
-   user.password);
+await registerPage.registerNewUser(  
+   userBuilder.name, 
+   userBuilder.email, 
+   userBuilder.password);
+
 await expect(yourFeedPage.profileNameField).toBeVisible();
-await expect(yourFeedPage.profileNameField).toContainText(user.username);
+await expect(yourFeedPage.profileNameField).toContainText(userBuilder.name);
 
 });
 
