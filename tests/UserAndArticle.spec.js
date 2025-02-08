@@ -8,7 +8,7 @@ import { ArticlePage } from '../src/pages/articlePage';
 import { RegisterPage } from '../src/pages/registerPage';
 import { SettingsPage } from '../src/pages/settingsPage';
 import { UserBuilder } from '../src/helpers/builder/index';
-import { ArticleBuilder } from '../src/helpers/builder/index';
+
 
 
 const URL_UI = 'https://realworld.qa.guru/';
@@ -88,8 +88,8 @@ const user = {
 */
 
 const userNewData = {
-   username: user.username,
-   email: user.email,
+   username: userBuilder.username,
+   email: userBuilder.email,
    password: faker.internet.password({length: 8})
 
 }
@@ -104,15 +104,15 @@ await mainPage.open(URL_UI);
 await mainPage.gotoRegister();
 
 await registerPage.registerNewUser(
-   user.username, 
-   user.email, 
-   user.password);
+   userBuilder.username, 
+   userBuilder.email, 
+   userBuilder.password);
 
 await expect(yourFeedPage.profileNameField).toBeVisible();
 await expect(yourFeedPage.profileNameField).toContainText(userBuilder.name);
 
 
-await yourFeedPage.gotoSettings(user.username);
+await yourFeedPage.gotoSettings(userBuilder.name);
 
 
 await settingsPage.changeSettings(userNewData.password);
