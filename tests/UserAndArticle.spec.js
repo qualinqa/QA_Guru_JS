@@ -172,7 +172,7 @@ test.describe('Действия пользователя со статьей', (
 
      
       
-      await expect(addArticlePage.checkArticleTitleField).toContainText(articleBuilder.title);
+      await expect(addArticlePage.checkArticleTitleField).toContainText(articleData.newArticleTitle);
 
       });
 
