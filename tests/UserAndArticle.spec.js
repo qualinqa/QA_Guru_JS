@@ -8,7 +8,7 @@ import { ArticlePage } from '../src/pages/articlePage';
 import { RegisterPage } from '../src/pages/registerPage';
 import { SettingsPage } from '../src/pages/settingsPage';
 import { UserBuilder } from '../src/helpers/builder/index';
-import { ArticleBuilder } from '../src/helpers/builder/articleBuilder';
+import { ArticleBuilder } from '../src/helpers/builder/index';
 
 
 const URL_UI = 'https://realworld.qa.guru/';
