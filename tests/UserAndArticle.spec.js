@@ -114,7 +114,7 @@ await yourFeedPage.gotoSettings(user.username);
 await settingsPage.changeSettings(userNewData.password);
 expect (settingsPage.updateSettingsButton).not.toBeVisible();
 
-await yourFeedPage.gotoLogout();
+await yourFeedPage.gotoLogout(userNewData.username);
 
 
 await mainPage.open(URL_UI);
