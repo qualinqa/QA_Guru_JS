@@ -77,58 +77,58 @@ await expect(yourFeedPage.profileNameField).toContainText(oldUser.username);
 
 test('Пользователь может изменить пароль', async ({ page }) => {
 
-   const userBuilder = new UserBuilder().addEmail().addUsername().addPassword(7).generate();
+   const userBuilder = new UserBuilder().addEmail().addUsername().addPassword(9).generate();
 
-/*
-const user = {
-   username: faker.person.firstName(),
-   email: faker.internet.email(),
-   password: faker.internet.password({length: 5})
-}
-*/
-
-const userNewData = {
-   username: userBuilder.username,
-   email: userBuilder.email,
-   password: faker.internet.password({length: 8})
-
-}
-
-const mainPage = new MainPage(page);
-const registerPage = new RegisterPage(page);
-const yourFeedPage = new YourFeedPage(page);
-const settingsPage = new SettingsPage(page);
-const loginPage    = new LoginPage(page);
-
-await mainPage.open(URL_UI);
-await mainPage.gotoRegister();
-
-await registerPage.registerNewUser(
-   userBuilder.username, 
-   userBuilder.email, 
-   userBuilder.password);
-
-await expect(yourFeedPage.profileNameField).toBeVisible();
-await expect(yourFeedPage.profileNameField).toContainText(userBuilder.name);
-
-
-await yourFeedPage.gotoSettings(userBuilder.name);
-
-
-await settingsPage.changeSettings(userNewData.password);
-expect (settingsPage.updateSettingsButton).not.toBeVisible();
-
-await yourFeedPage.gotoLogout(userNewData.username);
-
-
-await mainPage.open(URL_UI);
-await mainPage.gotoLogin();
-
-await loginPage.loginUser(userNewData.email, userNewData.password);
-await expect(yourFeedPage.profileNameField).toBeVisible();
-await expect(yourFeedPage.profileNameField).toContainText(userNewData.username);
-
-});
+   /*
+   const user = {
+      username: faker.person.firstName(),
+      email: faker.internet.email(),
+      password: faker.internet.password({length: 5})
+   }
+   */
+   
+   const userNewData = {
+      username: user.username,
+      email: user.email,
+      password: faker.internet.password({length: 8})
+   
+   }
+   
+   const mainPage = new MainPage(page);
+   const registerPage = new RegisterPage(page);
+   const yourFeedPage = new YourFeedPage(page);
+   const settingsPage = new SettingsPage(page);
+   const loginPage    = new LoginPage(page);
+   
+   await mainPage.open(URL_UI);
+   await mainPage.gotoRegister();
+   
+   await registerPage.registerNewUser(
+      user.username, 
+      user.email, 
+      user.password);
+   
+   await expect(yourFeedPage.profileNameField).toBeVisible();
+   await expect(yourFeedPage.profileNameField).toContainText(userBuilder.name);
+   
+   
+   await yourFeedPage.gotoSettings(user.username);
+   
+   
+   await settingsPage.changeSettings(userNewData.password);
+   expect (settingsPage.updateSettingsButton).not.toBeVisible();
+   
+   await yourFeedPage.gotoLogout(userNewData.username);
+   
+   
+   await mainPage.open(URL_UI);
+   await mainPage.gotoLogin();
+   
+   await loginPage.loginUser(userNewData.email, userNewData.password);
+   await expect(yourFeedPage.profileNameField).toBeVisible();
+   await expect(yourFeedPage.profileNameField).toContainText(userNewData.username);
+   
+   });
 
 // Действия пользователя со статьей
 
