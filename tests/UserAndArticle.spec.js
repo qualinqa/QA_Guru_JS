@@ -77,15 +77,12 @@ await expect(yourFeedPage.profileNameField).toContainText(oldUser.username);
 
 test('Пользователь может изменить пароль', async ({ page }) => {
 
-   const userBuilder = new UserBuilder().addEmail().addUsername().addPassword(9).generate();
-
-   /*
    const user = {
       username: faker.person.firstName(),
       email: faker.internet.email(),
       password: faker.internet.password({length: 5})
    }
-   */
+   
    
    const userNewData = {
       username: user.username,
@@ -109,7 +106,7 @@ test('Пользователь может изменить пароль', async 
       user.password);
    
    await expect(yourFeedPage.profileNameField).toBeVisible();
-   await expect(yourFeedPage.profileNameField).toContainText(userBuilder.name);
+   await expect(yourFeedPage.profileNameField).toContainText(user.username);
    
    
    await yourFeedPage.gotoSettings(user.username);
