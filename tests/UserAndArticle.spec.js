@@ -24,7 +24,7 @@ const articleData = {
 
 test('Регистрация нового пользователя', async ({ page }) => {
 
-   const userBuilder = new UserBuilder().addEmail().addUsername().addPassword(9).generator();
+   const userBuilder = new UserBuilder().addEmail().addUsername().addPassword(9).generate();
 
    /*
 const user = {

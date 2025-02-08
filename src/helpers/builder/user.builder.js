@@ -20,7 +20,7 @@ export class UserBuilder {
 
     };
 
-    generator() {
+    generate() {
         return {
             email: this.userEmail,
             password: this.userPassword,
