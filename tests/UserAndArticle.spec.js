@@ -47,7 +47,7 @@ await registerPage.registerNewUser(
    userBuilder.password);
 
 await expect(yourFeedPage.profileNameField).toBeVisible();
-await expect(yourFeedPage.profileNameField).toContainText(user.username);
+await expect(yourFeedPage.profileNameField).toContainText(userBuilder.name);
 
 });
 
@@ -114,7 +114,7 @@ await yourFeedPage.gotoSettings(user.username);
 await settingsPage.changeSettings(userNewData.password);
 expect (settingsPage.updateSettingsButton).not.toBeVisible();
 
-await yourFeedPage.gotoLogout(userNewData.username);
+await yourFeedPage.gotoLogout();
 
 
 await mainPage.open(URL_UI);

@@ -24,7 +24,7 @@ export class UserBuilder {
         return {
             email: this.userEmail,
             password: this.userPassword,
-            name: this.userName            
+            name: this.userUsername            
         };
     }
 
