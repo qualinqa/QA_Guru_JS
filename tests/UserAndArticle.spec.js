@@ -164,35 +164,22 @@ test.describe('Действия пользователя со статьей', (
       
       await yourFeedPage.gotoNewArticle();
       
-      /*
-      await addArticlePage.publishNewArticle(
-         articleData.newArticleTitle,
-         articleData.newDescribeArticle,
-         articleData.newArticle, 
-         articleData.newTag);
+    // Создание и публикация статьи с помощью ArticleBuilder
+    const articleBuilder = new ArticleBuilder(page)
+        .addTitle() // Используем дефолтное значение
+        .addDescription() // Используем дефолтное значение
+        .addBody() // Используем дефолтное значение
+        .addTag(); // Используем дефолтное значение
 
-     
+        await articleBuilder.publish();
       
-      await expect(addArticlePage.checkArticleTitleField).toContainText(articleBuilder.title);
+      await expect(addArticlePage.checkArticleTitleField).toContainText(articleBuilder.articleData.title);
 
       });
 
-      */
-
       //
 
-          // Создание и публикация статьи с помощью ArticleBuilder
-    const articleBuilder = new ArticleBuilder(page)
-    .addTitle() // Можно передать кастомный заголовок, если нужно
-    .addDescription() // Можно передать кастомное описание
-    .addBody() // Можно передать кастомный текст статьи
-    .addTag(); // Можно передать кастомный тег
-
-await articleBuilder.publish();
-
-// Проверка, что статья опубликована
-await expect(yourFeedPage.articleTitleField).toContainText(articleBuilder.articleData.title);
-
+      
 
       test('Пользователь может добавить комментарий к статье', async ({ page }) => {
       
