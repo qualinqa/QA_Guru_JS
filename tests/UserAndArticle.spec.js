@@ -102,29 +102,29 @@ test('Пользователь может изменить пароль', async 
    await mainPage.gotoRegister();
    
    await registerPage.registerNewUser(
-      user.username, 
-      user.email, 
-      user.password);
+      userBuilder.name, 
+      userBuilder.email, 
+      userBuilder.password);
    
    await expect(yourFeedPage.profileNameField).toBeVisible();
-   await expect(yourFeedPage.profileNameField).toContainText(user.username);
+   await expect(yourFeedPage.profileNameField).toContainText(userBuilder.name);
    
    
-   await yourFeedPage.gotoSettings(user.username);
+   await yourFeedPage.gotoSettings(userBuilder.name);
    
    
-   await settingsPage.changeSettings(userNewData.password);
+   await settingsPage.changeSettings(userNewPass.password);
    expect (settingsPage.updateSettingsButton).not.toBeVisible();
    
-   await yourFeedPage.gotoLogout(user.username);
+   await yourFeedPage.gotoLogout(userBuilder.name);
    
    
    await mainPage.open(URL_UI);
    await mainPage.gotoLogin();
    
-   await loginPage.loginUser(user.email, userNewPass.password);
+   await loginPage.loginUser(userBuilder.email, userNewPass.password);
    await expect(yourFeedPage.profileNameField).toBeVisible();
-   await expect(yourFeedPage.profileNameField).toContainText(user.username);
+   await expect(yourFeedPage.profileNameField).toContainText(userBuilder.name);
    
    });
 
