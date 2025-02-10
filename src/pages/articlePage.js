@@ -9,7 +9,7 @@ export class ArticlePage {
     this.articleTitleField  = page.getByRole('heading', { name: 'Article Title' });
     this.editArticleLink    = page.getByRole('link', { name: 'Edit Article' }).nth(1);
     this.deleteArticleLink  = page.getByRole('button', { name: 'Delete Article' }).first();
-    this.addCommentField    = page.getByPlaceholder('Write a comment');
+    this.addCommentField    = page.getByRole('textbox', { name: 'Write a comment' });
     this.postCommentButton  = page.getByRole('button', { name: 'Post Comment' });
     this.commentField = page.getByRole('main');
 
