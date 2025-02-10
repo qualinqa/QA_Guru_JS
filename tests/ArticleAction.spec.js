@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 import { test, expect } from '@playwright/test';
-import { MainPage, LoginPage, RegisterPage, YourFeedPage, AddArticlePage, ArticlePage }
+import { MainPage, LoginPage, YourFeedPage, AddArticlePage, ArticlePage }
  from '../src/pages/index';
 
 
