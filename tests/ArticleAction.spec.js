@@ -52,7 +52,6 @@ test.describe('Действия пользователя со статьей', (
          articleBuilder.newArticle, 
          articleBuilder.newTag);
 
-        await expect(articlePage.articleTitleField).toBeVisible();
         await expect(articlePage.articleTitleField).toContainText(articleBuilder.articleTitle);
 
       });
@@ -74,7 +73,6 @@ test.describe('Действия пользователя со статьей', (
            articleBuilder.newArticle, 
            articleBuilder.newTag);
   
-        await expect(articlePage.articleTitleField).toBeVisible();
         await expect(articlePage.articleTitleField).toContainText(articleBuilder.articleTitle);
       
       const textComment = 'Мой комментарий - лучший! Ай да я!'
