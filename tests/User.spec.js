@@ -1,8 +1,7 @@
 import { faker } from '@faker-js/faker';
 import { test, expect } from '@playwright/test';
 import { UserBuilder } from '../src/helpers/builder/index';
-import { MainPage, LoginPage, RegisterPage, YourFeedPage, SettingsPage }
- from '../src/pages/index';
+import { MainPage, LoginPage, RegisterPage, YourFeedPage, SettingsPage } from '../src/pages/index';
 
 
 
