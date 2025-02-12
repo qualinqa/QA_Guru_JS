@@ -1,5 +1,5 @@
-import { faker } from '@faker-js/faker';
 import { test, expect } from '@playwright/test';
+import { ArticleBuilder } from '../src/helpers/builder/index';
 import { MainPage, LoginPage, YourFeedPage, AddArticlePage, ArticlePage }
  from '../src/pages/index';
 
@@ -7,13 +7,7 @@ import { MainPage, LoginPage, YourFeedPage, AddArticlePage, ArticlePage }
 
 const URL_UI = 'https://realworld.qa.guru/';
 
-const articleData = {
-   newArticleTitle: faker.lorem.sentence(3),
-   newDescribeArticle: "описание",
-   newArticle: "Вот такая интересная статья получилась!",
-   newTag: "просто тэг"
-};
-
+const articleData = new ArticleBuilder().addNewArticle().addDescribeArticle().addArticleTitle().addTag().addComment().generate();
 
 // Действия пользователя со статьей
 
@@ -50,23 +44,20 @@ test.describe('Действия пользователя со статьей', (
       await yourFeedPage.gotoNewArticle();
       
       await addArticlePage.publishNewArticle(
-         articleData.newArticleTitle,
-         articleData.newDescribeArticle,
-         articleData.newArticle, 
-         articleData.newTag);
-
+         articleData.ArticleTitle,
+         articleData.DescribeArticle,
+         articleData.NewArticle, 
+         articleData.Tag);
      
       
-      await expect(addArticlePage.checkArticleTitleField).toContainText(articleData.newArticleTitle);
+      await expect(articlePage.articleTitleField).toContainText(articleData.ArticleTitle);
 
       });
 
       
-
       test('Пользователь может добавить комментарий к статье', async ({ page }) => {
       
-      
-   
+         
       const yourFeedPage = new YourFeedPage(page);
       const addArticlePage = new AddArticlePage(page, articleData.newArticleTitle);
       const articlePage = new ArticlePage(page);
@@ -75,20 +66,17 @@ test.describe('Действия пользователя со статьей', (
       await yourFeedPage.gotoNewArticle();
     
       await addArticlePage.publishNewArticle(
-         articleData.newArticleTitle,
-         articleData.newDescribeArticle,
-         articleData.newArticle,
-         articleData.newTag);
+         articleData.ArticleTitle,
+         articleData.DescribeArticle,
+         articleData.NewArticle,
+         articleData.Tag);
+            
+       
+      await expect(articlePage.articleTitleField).toContainText(articleData.ArticleTitle);
       
-      
-      await expect(addArticlePage.checkArticleTitleField).toContainText(articleData.newArticleTitle);
-      
-      const textComment = 'Мой комментарий - лучший! Ай да я!'
-      await articlePage.postNewComment(textComment);
-      await expect(articlePage.commentField).toContainText(textComment);
-      
-      
+      await articlePage.postNewComment(articleData.Comment);
+      await expect(articlePage.commentField).toContainText(articleData.Comment);
+            
       });
-      
       
 });
