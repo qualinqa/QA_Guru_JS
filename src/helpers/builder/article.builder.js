@@ -23,7 +23,7 @@ export class ArticleBuilder {
         return this;
     }
     addTag() {
-        this.articleData.Tag = "А это просто тэг";
+        this.articleData.Tag = "А это тэг, просто тэг";
         return this;
     }
     generate() {
